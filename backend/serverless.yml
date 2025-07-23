@@ -1,0 +1,33 @@
+service: quote-api
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+
+functions:
+  get_quote:
+    handler: src.handler.get_quote
+    events:
+      - http:
+          path: quote
+          method: get
+          cors: true
+      - http:
+          path: /
+          method: get
+          cors: true
+
+plugins:
+  - serverless-python-requirements
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 3000
+    lambdaPort: 3002
+    noPrependStageInUrl: true
+    staticDir: public
