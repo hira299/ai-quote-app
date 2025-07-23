@@ -13,6 +13,9 @@ A beautiful, responsive web application that displays inspirational quotes with 
 ## 🛠️ Tech Stack
 
 ### Frontend
+- **Next.js**: React framework with TypeScript
+- **TypeScript**: Type-safe JavaScript
+- **Tailwind CSS**: Utility-first CSS framework
 - **HTML5**: Semantic markup
 - **CSS3**: Modern styling with Flexbox, Grid, and animations
 - **JavaScript**: Fetch API, async/await, DOM manipulation
@@ -31,14 +34,20 @@ A beautiful, responsive web application that displays inspirational quotes with 
 
 ```
 ai-quote-app/
+├── frontend/                 # Next.js application
+│   ├── src/
+│   │   └── app/             # Next.js app directory
+│   ├── public/              # Static assets
+│   ├── package.json         # Frontend dependencies
+│   └── next.config.ts       # Next.js configuration
 ├── backend/
 │   ├── src/
-│   │   └── handler.py          # Python Lambda function
+│   │   └── handler.py       # Python Lambda function
 │   ├── public/
-│   │   └── index.html          # Frontend web page
-│   ├── serverless.yml          # Serverless configuration
-│   ├── requirements.txt        # Python dependencies
-│   └── package.json           # Node.js dependencies
+│   │   └── index.html       # Static frontend page
+│   ├── serverless.yml       # Serverless configuration
+│   ├── requirements.txt     # Python dependencies
+│   └── package.json         # Node.js dependencies
 └── README.md
 ```
 
@@ -54,30 +63,41 @@ ai-quote-app/
 
 1. **Clone the repository:**
 ```bash
-git clone <your-repo-url>
-cd ai-quote-app/backend
+git clone https://github.com/hira299/ai-quote-app.git
+cd ai-quote-app
 ```
 
-2. **Install Node.js dependencies:**
+2. **Set up the backend:**
 ```bash
+cd backend
 npm install
-```
-
-3. **Set up Python virtual environment:**
-```bash
 python3.9 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. **Start the development server:**
+3. **Set up the frontend:**
 ```bash
+cd ../frontend
+npm install
+```
+
+4. **Start the backend server:**
+```bash
+cd ../backend
 serverless offline
 ```
 
-5. **Open your browser and visit:**
+5. **Start the frontend (in a new terminal):**
+```bash
+cd frontend
+npm run dev
 ```
-http://localhost:3000
+
+6. **Open your browser and visit:**
+```
+http://localhost:3000  # Backend API
+http://localhost:3001  # Next.js frontend
 ```
 
 ## 🎯 Usage
@@ -101,11 +121,11 @@ http://localhost:3000
 ## 🎨 Features
 
 ### Frontend
-- Gradient background with modern card design
-- Hover effects and smooth transitions
-- Loading states for better UX
-- Error handling with user-friendly messages
+- Next.js with TypeScript for type safety
+- Tailwind CSS for modern styling
 - Responsive design for all screen sizes
+- Server-side rendering capabilities
+- Optimized performance
 
 ### Backend
 - Serverless architecture for scalability
@@ -130,12 +150,25 @@ The `serverless.yml` file contains:
 
 ### Local Development
 ```bash
+# Backend
+cd backend
 serverless offline
+
+# Frontend
+cd frontend
+npm run dev
 ```
 
 ### AWS Deployment
 ```bash
+# Backend
+cd backend
 serverless deploy
+
+# Frontend
+cd frontend
+npm run build
+npm run start
 ```
 
 ## 📝 Available Quotes
@@ -167,7 +200,8 @@ QUOTES = [
 ```
 
 ### Styling Changes
-Modify the CSS in `backend/public/index.html` to customize the appearance.
+- **Backend**: Modify the CSS in `backend/public/index.html`
+- **Frontend**: Modify the components in `frontend/src/app/`
 
 ### API Modifications
 Update the `get_quote` function in `backend/src/handler.py` for backend changes.
